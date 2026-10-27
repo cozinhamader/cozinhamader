@@ -1,88 +1,869 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cozinha Mader | O tempero de família na sua mesa</title>
-    <!-- Tailwind CSS para Estilização Rápida e Responsiva -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Cozinha Mader | Culinária Familiar com Tempero de Vovó</title>
+    <meta name="description" content="Culinária familiar artesanal com o gostinho do tempero da vovó. Feito com amor, ingredientes frescos e muito carinho.">
     
-    <!-- Configuração de Cores Personalizadas -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#b45309', // Terracota quente (foco em gastronomia)
-                        secondary: '#d97706', // Laranja escuro
-                        background: '#fdfbf7', // Fundo bege claro (estilo o da página anterior)
-                        text_dark: '#292524', // Texto escuro e elegante
+                        terracotta: {
+                            DEFAULT: '#C04A27',
+                            light: '#D95F3B',
+                            dark: '#A0381C',
+                            50: '#FAF0ED',
+                            100: '#F5E1DB',
+                        },
+                        amberWarm: '#E58E26',
+                        espresso: '#2B1E1A',
+                        cream: '#FDFBF7',
+                        cardBg: '#FFFFFF',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'warm': '0 10px 30px -5px rgba(43, 30, 26, 0.08)',
+                        'hover': '0 15px 35px -5px rgba(192, 74, 39, 0.15)',
                     }
                 }
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--background); }
-    </style>
     
-    <meta name="description" content="Cozinha Mader. Refeições sob encomenda, lasanhas, strogonoff e bolos caseiros. O gostinho do tempero da vovó na sua mesa.">
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2B1E1A;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        /* Subtle texture background styling */
+        .bg-pattern {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(#E58E26 0.5px, transparent 0.5px), radial-gradient(#C04A27 0.5px, #FDFBF7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.05;
+        }
+
+        .badge-pulse {
+            animation: pulse-subtle 2s infinite;
+        }
+
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .tab-btn.active {
+            background-color: #C04A27;
+            color: #FFFFFF;
+            border-color: #C04A27;
+            box-shadow: 0 4px 14px rgba(192, 74, 39, 0.25);
+        }
+    </style>
 </head>
+<body class="antialiased selection:bg-terracotta selection:text-white">
 
-<body class="bg-[#fdfbf7] text-gray-800 font-sans antialiased">
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-terracotta/10 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="logo.png" alt="Cozinha Mader Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/120x120/2B1E1A/FDFBF7?text=CM';">
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-xl sm:text-2xl text-espresso tracking-tight leading-none group-hover:text-terracotta transition-colors">Cozinha Mader</span>
+                        <span class="text-[10px] sm:text-xs text-amberWarm font-medium tracking-widest uppercase mt-1">Tempero de Vovó</span>
+                    </div>
+                </a>
 
-    <!-- CABEÇALHO HERO -->
-    <header class="text-center py-12 px-6 bg-white shadow-sm border-b border-gray-100">
-        <!-- Logo em PNG conforme solicitado -->
-        <img src="logo.png" alt="Cozinha Mader" class="max-w-[220px] md:max-w-[280px] h-auto mx-auto mb-6">
-        
-        <h1 class="text-3xl md:text-4xl font-serif font-bold text-text_dark mb-3">O tempero de família, agora na sua mesa</h1>
-        <p class="text-lg text-gray-500 italic max-w-2xl mx-auto mb-8">"Comida caseira feita com o coração, preservando a tradição e o verdadeiro sabor da nossa história."</p>
-        
-        <a href="#contato" class="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-3 rounded-full font-semibold transition-transform hover:scale-105 shadow-lg shadow-green-500/30">
-            <i class="fab fa-whatsapp text-2xl mr-2"></i> Fazer uma Encomenda
-        </a>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-espresso/80">
+                    <a href="#inicio" class="hover:text-terracotta transition-colors py-1">Início</a>
+                    <a href="#sobre" class="hover:text-terracotta transition-colors py-1">Nossa História</a>
+                    <a href="#cardapio" class="hover:text-terracotta transition-colors py-1">Cardápio</a>
+                    <a href="#como-pedir" class="hover:text-terracotta transition-colors py-1">Como Pedir</a>
+                    <a href="#contato" class="hover:text-terracotta transition-colors py-1">Contato</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://instagram.com/cozinhamader" target="_blank" rel="noopener noreferrer" class="bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                        <span>Fazer Pedido</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-espresso p-2 focus:outline-none" aria-label="Abrir Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cream border-b border-terracotta/10 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-espresso hover:text-terracotta font-medium">Início</a>
+            <a href="#sobre" class="block py-2 text-espresso hover:text-terracotta font-medium">Nossa História</a>
+            <a href="#cardapio" class="block py-2 text-espresso hover:text-terracotta font-medium">Cardápio</a>
+            <a href="#como-pedir" class="block py-2 text-espresso hover:text-terracotta font-medium">Como Pedir</a>
+            <a href="#contato" class="block py-2 text-espresso hover:text-terracotta font-medium">Contato</a>
+            <div class="pt-2">
+                <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-terracotta text-white font-medium py-3 rounded-xl flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>Pedir pelo Instagram</span>
+                </a>
+            </div>
+        </div>
     </header>
 
-    <div class="container mx-auto max-w-5xl px-6 py-16">
-        
-        <!-- SEÇÃO SOBRE A HISTÓRIA -->
-        <section class="flex flex-col md:flex-row items-center gap-10 mb-20 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
-            <div class="flex-1 text-center">
-                <!-- Imagem ilustrativa que você pode trocar por uma foto da família ou da cozinha -->
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Preparo Artesanal" class="w-full max-w-sm rounded-2xl shadow-md mx-auto object-cover h-80">
-            </div>
-            <div class="flex-[2]">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-primary mb-6">A Herança do Sabor <i class="fas fa-utensils text-secondary ml-2"></i></h2>
-                <div class="space-y-4 text-gray-700 leading-relaxed text-lg">
-                    <p>A Cozinha Mader nasceu para manter viva a tradição da culinária da nossa família. Acreditamos que uma boa refeição vai muito além de apenas se alimentar: é um momento de união, carinho e memórias.</p>
-                    <p>Nossas receitas carregam o autêntico <strong class="text-primary">gostinho do tempero da vovó</strong>. Tudo é preparado diariamente com ingredientes frescos, muito cuidado e zero atalhos industriais, para que você sinta o conforto de casa a cada garfada.</p>
-                    <p>Trabalhamos sob encomenda para garantir que o seu prato chegue sempre com o máximo de frescor e sabor.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-terracotta/20">
+                        <i class="fa-solid fa-heart text-amberWarm"></i>
+                        <span>Comida Caseira Feita com Afeto</span>
+                    </div>
 
-        <!-- SEÇÃO DE CARDÁPIO -->
-        <section class="text-center mb-20">
-            <h2 class="text-3xl font-serif font-bold text-text_dark mb-4">O que preparamos para você?</h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-10">Tudo feito artesanalmente e sob encomenda para a sua semana.</p>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-espresso tracking-tight leading-tight">
+                        Culinária familiar com aquele <span class="italic text-terracotta">gostinho de tempero</span> da vovó.
+                    </h1>
+
+                    <p class="text-espresso/80 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Receitas tradicionais que aquecem o coração, preparadas artesanalmente com ingredientes selecionados para levar o melhor da cozinha de casa direto para sua mesa.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#cardapio" class="w-full sm:w-auto bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Ver Cardápio Especial</span>
+                        </a>
+                        <a href="https://instagram.com/cozinhamader" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white hover:bg-cream text-espresso font-semibold text-base px-8 py-4 rounded-full border-2 border-espresso/20 shadow-sm hover:shadow transition-all duration-300 flex items-center justify-center gap-3">
+                            <i class="fa-brands fa-instagram text-terracotta text-lg"></i>
+                            <span>Siga no Instagram</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlights badges -->
+                    <div class="pt-8 border-t border-espresso/10 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="text-terracotta font-serif font-bold text-lg sm:text-xl">100%</span>
+                            <span class="text-xs text-espresso/70">Artesanal</span>
+                        </div>
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="text-terracotta font-serif font-bold text-lg sm:text-xl">Fresquinho</span>
+                            <span class="text-xs text-espresso/70">Feito sob medida</span>
+                        </div>
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="text-terracotta font-serif font-bold text-lg sm:text-xl">Afeto</span>
+                            <span class="text-xs text-espresso/70">Em cada prato</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image & Badge Showcase -->
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Decorative circle -->
+                        <div class="absolute -top-6 -left-6 w-72 h-72 bg-amberWarm/20 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-terracotta/20 rounded-full blur-2xl"></div>
+
+                        <!-- Main Image Container -->
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800" 
+                                 alt="Prato caseiro Cozinha Mader" 
+                                 class="w-full h-96 sm:h-[450px] object-cover hover:scale-105 transition-transform duration-700">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                                <span class="bg-amberWarm text-espresso text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full w-fit mb-2">Feijoada de Domingo</span>
+                                <p class="text-sm font-medium text-cream/90">Sabor inconfundível que reúne toda a família em volta da mesa.</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-terracotta/10 flex items-center gap-3 badge-pulse hidden sm:flex">
+                            <div class="w-12 h-12 bg-terracotta/10 rounded-full flex items-center justify-center text-terracotta text-xl">
+                                <i class="fa-solid fa-cookie-bite"></i>
+                            </div>
+                            <div>
+                                <p class="font-serif font-bold text-sm text-espresso">Bolos Caseiros</p>
+                                <p class="text-xs text-espresso/70">Quentinhos e fofinhos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Highlights -->
+    <section class="py-12 bg-white border-y border-terracotta/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream/50">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0 text-xl">
+                        <i class="fa-solid fa-pepper-hot"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-lg text-espresso mb-1">Tempero Especial</h3>
+                        <p class="text-sm text-espresso/70">Ervas frescas, temperos naturais e a medida certa do carinho de vovó.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream/50">
+                    <div class="w-12 h-12 rounded-xl bg-amberWarm/20 text-amberWarm flex items-center justify-center shrink-0 text-xl">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-lg text-espresso mb-1">Ingredientes Selecionados</h3>
+                        <p class="text-sm text-espresso/70">Produtos frescos adquiridos com rigor para garantir qualidade e sabor ímpar.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 rounded-2xl bg-cream/50">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta/10 text-terracotta flex items-center justify-center shrink-0 text-xl">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif font-bold text-lg text-espresso mb-1">Cozinha Afetiva</h3>
+                        <p class="text-sm text-espresso/70">Comida que desperta memórias boas e reúne as pessoas com alegria.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre / Nossa História Section -->
+    <section id="sobre" class="py-20 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=600" alt="Cozinha caseira com amor" class="rounded-2xl shadow-md w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" alt="Bolo de vó quentinho" class="rounded-2xl shadow-md w-full h-64 object-cover mt-8">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-terracotta text-white p-6 rounded-2xl shadow-xl max-w-xs hidden sm:block">
+                        <p class="font-serif italic text-sm">"O segredo do tempero não está na receita, mas no amor que colocamos na panela."</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 text-terracotta font-semibold text-xs tracking-widest uppercase">
+                        <i class="fa-solid fa-spoon"></i>
+                        <span>Nossa História</span>
+                    </div>
+
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso leading-tight">
+                        A tradição da família Mader levada para a sua casa
+                    </h2>
+
+                    <p class="text-espresso/80 text-base leading-relaxed">
+                        A <strong class="text-espresso font-semibold">Cozinha Mader</strong> nasceu do desejo simples e profundo de compartilhar o que mais amamos: a boa mesa, cheia de sabor, gargalhadas e aquele cheirinho inconfundível de comida recém-feita que invade a casa inteira.
+                    </p>
+
+                    <p class="text-espresso/80 text-base leading-relaxed">
+                        Nossos pratos carregam os segredos culinários transmitidos por gerações. Cada lasanha, cada caldo e cada fatia de bolo são preparados com o mesmo rigor, paciência e afeto com que a vovó sempre nos recebeu.
+                    </p>
+
+                    <div class="pt-4 flex flex-wrap gap-3">
+                        <span class="bg-white border border-espresso/10 text-espresso text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-terracotta mr-1.5"></i> Massas Artesanais
+                        </span>
+                        <span class="bg-white border border-espresso/10 text-espresso text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-terracotta mr-1.5"></i> Comida Oriental Especial
+                        </span>
+                        <span class="bg-white border border-espresso/10 text-espresso text-xs font-semibold px-4 py-2 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-terracotta mr-1.5"></i> Bolos Caseiros de Vó
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Cardápio Section -->
+    <section id="cardapio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="grid md:grid-cols-3 gap-8 text-left">
-                <!-- Pratos Caseiros -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border-b-4 border-primary">
-                    <div class="text-4xl text-primary mb-4"><i class="fas fa-bowl-food"></i></div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Clássicos de Família</h3>
-                    <ul class="text-gray-600 space-y-2 font-medium">
-                        <li><i class="fas fa-check text-green-500 mr-2 text-sm"></i>Lasanha Caseira</li>
-                        <li><i class="fas fa-check text-green-500 mr-2 text-sm"></i>Panquecas</li>
-                        <li><i class="fas fa-check text-green-500 mr-2 text-sm"></i>Nhoque Artesanal</li>
-                        <li><i class="fas fa-check text-green-500 mr-2 text-sm"></i>Feijoada Completa</li>
-                        <li><i class="fas fa-check text-green-500 mr-2 text-sm
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <div class="inline-flex items-center gap-2 text-terracotta font-semibold text-xs tracking-widest uppercase">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Nosso Cardápio</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">
+                    Escolha as delícias de hoje
+                </h2>
+                <p class="text-espresso/70 text-base">
+                    Pratos preparados no dia com ingredientes frescos para garantir a melhor experiência na sua refeição.
+                </p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12" id="categoryTabs">
+                <button class="tab-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300" data-category="todos">
+                    Todos os Pratos
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300 hover:border-terracotta" data-category="massas">
+                    <i class="fa-solid fa-bowl-rice mr-1"></i> Massas
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300 hover:border-terracotta" data-category="oriental">
+                    <i class="fa-solid fa-fish mr-1"></i> Oriental
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300 hover:border-terracotta" data-category="sopas">
+                    <i class="fa-solid fa-mug-hot mr-1"></i> Sopas & Caldos
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300 hover:border-terracotta" data-category="dia-a-dia">
+                    <i class="fa-solid fa-utensils mr-1"></i> Dia a Dia
+                </button>
+                <button class="tab-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-espresso/10 transition-all duration-300 hover:border-terracotta" data-category="bolos">
+                    <i class="fa-solid fa-cake-candles mr-1"></i> Bolos Caseiros
+                </button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menuGrid">
+                
+                <!-- MASSAS -->
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="massas">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&q=80&w=600" alt="Lasanha Especial" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-terracotta text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">Mais Pedido</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Lasanha Especial</h3>
+                                <span class="text-xs bg-terracotta/10 text-terracotta font-semibold px-2.5 py-1 rounded-md">Massas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Camadas generosas de massa artesanal, molho apurado lentinho e recheio suculento com queijo derretido.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="massas">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1628837778464-162849a73948?auto=format&fit=crop&q=80&w=600" alt="Panqueca Recheada" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Panqueca Recheada</h3>
+                                <span class="text-xs bg-terracotta/10 text-terracotta font-semibold px-2.5 py-1 rounded-md">Massas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Panquecas fofinhas com recheio bem temperadinho e cobertas com molho artesanal de tomate fresquinho.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="massas">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600" alt="Nhoque Caseiro" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Nhoque Caseiro</h3>
+                                <span class="text-xs bg-terracotta/10 text-terracotta font-semibold px-2.5 py-1 rounded-md">Massas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Nhoque macio feito à mão que derrete na boca, servido com molho artesanal especial e queijo ralado.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ORIENTAL -->
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="oriental">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=600" alt="Temaki de Pote" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-amberWarm text-espresso text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">Novidade</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Temaki de Pote</h3>
+                                <span class="text-xs bg-amberWarm/20 text-espresso font-semibold px-2.5 py-1 rounded-md">Oriental</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Combinação deliciosa no pote: salmão fresco, cream cheese aveludado, arroz temperado e nori crocante.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="oriental">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" alt="Sunomono de Pepino" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Sunomono de Pepino</h3>
+                                <span class="text-xs bg-amberWarm/20 text-espresso font-semibold px-2.5 py-1 rounded-md">Oriental</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Salada leve e refrescante de pepino japonês fininho com gergelim torrado e molho agridoce harmonioso.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SOPAS E CALDOS -->
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="sopas">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=600" alt="Sopas e Caldos Reconfortantes" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Sopas e Caldos</h3>
+                                <span class="text-xs bg-terracotta/10 text-terracotta font-semibold px-2.5 py-1 rounded-md">Sopas</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Caldos aveludados e reconfortantes preparados com vegetais e carnes selecionadas para aquecer o corpo e a alma.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Consultar Opções do Dia</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DIA A DIA -->
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="dia-a-dia">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=600" alt="Feijoada Tradicional" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-terracotta text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">Especial</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Feijoada Tradicional</h3>
+                                <span class="text-xs bg-espresso/10 text-espresso font-semibold px-2.5 py-1 rounded-md">Dia a Dia</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Feijoada bem recheada com pertences selecionados, cozida em fogo lento com tempero marcante e cheiro-verde.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="dia-a-dia">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600" alt="Filé de Tilápia" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Filé de Tilápia</h3>
+                                <span class="text-xs bg-espresso/10 text-espresso font-semibold px-2.5 py-1 rounded-md">Dia a Dia</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Filé fresco marinado em ervas finas e limão, grelhado na medida ideal para manter a suculência e o leve toque dourado.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="dia-a-dia">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=600" alt="Strogonoff Clássico" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Strogonoff Caseiro</h3>
+                                <span class="text-xs bg-espresso/10 text-espresso font-semibold px-2.5 py-1 rounded-md">Dia a Dia</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Disponível nas opções <strong>Filé Mignon</strong> ou <strong>Frango</strong>. Molho cremoso especial e batata palha crocante.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Escolher Opção</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BOLOS CASEIROS -->
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="bolos">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&q=80&w=600" alt="Bolo de Laranja" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Bolo de Laranja</h3>
+                                <span class="text-xs bg-amberWarm/20 text-espresso font-semibold px-2.5 py-1 rounded-md">Bolos</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Bolo fofinho e molhadinho com calda natural de laranja fresca e cheirinho de casa de vó.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="bolos">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" alt="Bolo de Cenoura" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-amberWarm text-espresso text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">Favorito</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Bolo de Cenoura</h3>
+                                <span class="text-xs bg-amberWarm/20 text-espresso font-semibold px-2.5 py-1 rounded-md">Bolos</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                O clássico insuperável com massa leve de cenoura e cobertura generosa de brigadeiro cremoso.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="menu-item bg-cream/40 rounded-2xl overflow-hidden border border-espresso/5 shadow-warm hover:shadow-hover transition-all duration-300 flex flex-col justify-between" data-category="bolos">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&q=80&w=600" alt="Bolo de Milho e Fubá" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-xl text-espresso">Bolos de Milho ou Fubá</h3>
+                                <span class="text-xs bg-amberWarm/20 text-espresso font-semibold px-2.5 py-1 rounded-md">Bolos</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed mb-4">
+                                Escolha entre o sabor cremoso do milho verde ou o bolo de fubá bem quentinho para o café da tarde.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="w-full bg-espresso hover:bg-terracotta text-white text-xs font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>Pedir no Instagram</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section id="como-pedir" class="py-20 bg-cream relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 text-terracotta font-semibold text-xs tracking-widest uppercase">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <span>Simples & Prático</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">
+                    Como fazer o seu pedido?
+                </h2>
+                <p class="text-espresso/70 text-base">
+                    Preparamos tudo com carinho e entregamos na sua casa.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                
+                <!-- Step 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-terracotta/10 shadow-warm text-center relative z-10 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-terracotta text-white flex items-center justify-center text-2xl font-serif font-bold mb-6 shadow-md">
+                        1
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-espresso mb-3">Escolha os Pratos</h3>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Navegue pelo nosso cardápio e selecione suas massas, refeições, saladas ou bolos favoritos.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-terracotta/10 shadow-warm text-center relative z-10 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amberWarm text-espresso flex items-center justify-center text-2xl font-serif font-bold mb-6 shadow-md">
+                        2
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-espresso mb-3">Envie sua Encomenda</h3>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Mande uma mensagem direta no nosso Instagram ou e-mail com a lista do seu pedido.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-terracotta/10 shadow-warm text-center relative z-10 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-2xl bg-espresso text-white flex items-center justify-center text-2xl font-serif font-bold mb-6 shadow-md">
+                        3
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-espresso mb-3">Receba e Saboreie</h3>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Entregamos com todo cuidado para você aproveitar o verdadeiro sabor do tempero de vó.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato & Redes Sociais Section -->
+    <section id="contato" class="py-20 bg-white border-t border-terracotta/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-espresso text-cream rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
+                
+                <!-- Background decorative elements -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-terracotta/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-amberWarm/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                    
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <span class="bg-terracotta text-white text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                            Fale Conosco
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+                            Pronto para saborear o tempero da vovó?
+                        </h2>
+                        <p class="text-cream/80 text-base max-w-xl mx-auto lg:mx-0">
+                            Faça sua encomenda antecedida, tire dúvidas sobre ingredientes ou consulte o prato especial do dia.
+                        </p>
+
+                        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://instagram.com/cozinhamader" target="_blank" rel="noopener noreferrer" class="bg-terracotta hover:bg-terracotta-light text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                                <span>@cozinhamader</span>
+                            </a>
+                            <a href="mailto:cozinhamader@gmail.com" class="bg-cream/10 hover:bg-cream/20 text-cream font-semibold px-6 py-3.5 rounded-2xl border border-cream/20 transition-all flex items-center justify-center gap-3">
+                                <i class="fa-regular fa-envelope text-xl"></i>
+                                <span>cozinhamader@gmail.com</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Cards / Whatsapp coming soon -->
+                    <div class="lg:col-span-5 space-y-4">
+                        
+                        <!-- Instagram Card -->
+                        <a href="https://instagram.com/cozinhamader" target="_blank" class="block bg-white/5 hover:bg-white/10 p-5 rounded-2xl border border-white/10 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-amberWarm to-terracotta rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">Instagram Direct</h4>
+                                    <p class="text-xs text-cream/70">Resposta rápida para pedidos</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-right ml-auto text-cream/40 group-hover:text-amberWarm transition-colors"></i>
+                            </div>
+                        </a>
+
+                        <!-- Email Card -->
+                        <a href="mailto:cozinhamader@gmail.com" class="block bg-white/5 hover:bg-white/10 p-5 rounded-2xl border border-white/10 transition-all group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-terracotta/30 rounded-xl flex items-center justify-center text-terracotta-light text-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-base">E-mail Oficial</h4>
+                                    <p class="text-xs text-cream/70">cozinhamader@gmail.com</p>
+                                </div>
+                                <i class="fa-solid fa-arrow-right ml-auto text-cream/40 group-hover:text-amberWarm transition-colors"></i>
+                            </div>
+                        </a>
+
+                        <!-- Whatsapp Status Card -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10 flex items-center gap-4 relative overflow-hidden">
+                            <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-bold text-white text-base">WhatsApp</h4>
+                                    <span class="bg-amberWarm/20 text-amberWarm text-[10px] font-bold px-2 py-0.5 rounded uppercase">Em Breve</span>
+                                </div>
+                                <p class="text-xs text-cream/70">Canal exclusivo em preparação</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cream py-12 border-t border-terracotta/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Cozinha Mader" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/2B1E1A/FDFBF7?text=CM';">
+                    <div>
+                        <span class="font-serif font-bold text-lg text-espresso block leading-none">Cozinha Mader</span>
+                        <span class="text-xs text-espresso/60">Culinária Familiar Artesanal</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6 text-sm text-espresso/70">
+                    <a href="#inicio" class="hover:text-terracotta transition-colors">Início</a>
+                    <a href="#sobre" class="hover:text-terracotta transition-colors">Nossa História</a>
+                    <a href="#cardapio" class="hover:text-terracotta transition-colors">Cardápio</a>
+                    <a href="#contato" class="hover:text-terracotta transition-colors">Contato</a>
+                </div>
+
+                <div class="text-xs text-espresso/60">
+                    &copy; <span id="currentYear"></span> Cozinha Mader. Todos os direitos reservados.
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set dynamic year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Category Filter Logic
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const category = button.getAttribute('data-category');
+
+                menuItems.forEach(item => {
+                    if (category === 'todos' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'flex';
+                        // Add fade in animation class
+                        item.classList.add('animate-fadeIn');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Header shadow on scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
